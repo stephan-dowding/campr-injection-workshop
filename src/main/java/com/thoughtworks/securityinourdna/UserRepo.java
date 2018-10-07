@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepo {
 
@@ -19,6 +21,16 @@ public class UserRepo {
         stmt.setString(1, vendorName);
         stmt.setString(2, password);
         stmt.execute();
+    }
+
+    public List<String> allVendors() throws SQLException {
+        List<String> vendors = new ArrayList<>();
+        final String query = "select vendor_name from users";
+        final ResultSet resultSet = connection.createStatement().executeQuery(query);
+        while(resultSet.next()){
+            vendors.add(resultSet.getString("vendor_name"));
+        }
+        return vendors;
     }
 
     public LoginResult login(String vendorName, String password) throws SQLException {

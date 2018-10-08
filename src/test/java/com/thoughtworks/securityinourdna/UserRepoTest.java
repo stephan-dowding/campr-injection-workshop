@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -35,6 +36,22 @@ public class UserRepoTest {
 
         // Then
         assertEquals(getUserCount(conn), 2);
+    }
+
+    @Test
+    public void all_vendors_should_return_names_from_the_database() throws Exception {
+        // Given
+        UserRepo repo = new UserRepo(conn);
+        repo.addName("Alice", "password");
+        repo.addName("Bob", "password");
+
+        // When
+        List<String> vendors = repo.allVendors();
+
+        // Then
+        assertEquals(2, vendors.size());
+        assertTrue(vendors.contains("Alice"));
+        assertTrue(vendors.contains("Bob"));
     }
 
 

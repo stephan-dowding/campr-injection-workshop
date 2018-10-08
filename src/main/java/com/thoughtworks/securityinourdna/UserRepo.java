@@ -16,11 +16,8 @@ public class UserRepo {
     }
 
     public void addName(String vendorName, String password) throws Exception {
-        final String query = "insert into users values (?, ?)";
-        final PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setString(1, vendorName);
-        stmt.setString(2, password);
-        stmt.execute();
+        final String query = "insert into users values ('" + vendorName + "', '" + password + "')";
+        connection.createStatement().execute(query);
     }
 
     public List<String> allVendors() throws SQLException {

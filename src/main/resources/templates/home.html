@@ -6,8 +6,6 @@
     <meta charset="UTF-8" />
     <title>Injection Workshop</title>
 
-    <script type="text/javascript" src="/js/jquery-2.1.3.js"></script>
-    <script type="text/javascript" src="/js/handle-login.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
 
     <style type="text/css">
@@ -40,7 +38,7 @@
 
 <div class="container">
     <div id="login" class="">
-        <form class="form-signin">
+        <form class="form-signin" method="post" action="/login">
             <select class="form-control" name="vendor" placeholder="Vendor">
                 <option value="">Select Vendor</option>
                 <option th:each="vendor : ${vendors}"
